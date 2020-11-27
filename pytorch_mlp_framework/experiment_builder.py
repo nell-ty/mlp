@@ -153,10 +153,10 @@ class ExperimentBuilder(nn.Module):
         """
         ########################################
 
-        for name, param in named_parameters():
+        for name, param in named_parameters:
             if param.requires_grad:
                 if param.grad is not None:
-                    all_grads.append(param.grad.abs().mean())
+                    all_grads.append(param.grad.abs().mean().item())
                     layers.append(name)
 
         ########################################
