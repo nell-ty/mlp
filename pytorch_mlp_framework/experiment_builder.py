@@ -154,10 +154,10 @@ class ExperimentBuilder(nn.Module):
         ########################################
 
         for name, param in named_parameters:
-            if param.requires_grad:
+            if param.requires_grad and not ('bias' in name):
                 if param.grad is not None:
                     all_grads.append(param.grad.abs().mean().item())
-                    layers.append(name)
+                    layers.append(name.replace('.weight', '').replace('layer_dict.', ''))
 
         ########################################
 
